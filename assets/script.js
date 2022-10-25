@@ -27,3 +27,8 @@ json connect
 
 6) WHEN I refresh the page THEN the saved events persist
 */
+
+
+var today = moment().format("[Today is: ]MMM Do, YYYY, h:mma");
+$("#currentDay").text(today);
+
