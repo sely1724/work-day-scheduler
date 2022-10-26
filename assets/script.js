@@ -4,9 +4,7 @@
 
 
 
-3) Code Timeblocks so that they indicate whether it is in the past, present, or future
-
-class = ".past" ".present"  ".future"
+3) Figure out Time Blocks.
 
 probably have to find current time and compare it to the time for each form.  
 
@@ -28,20 +26,9 @@ var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
 
 var currentHour = rightNow.format("H");
+console.log(currentHour)
 
-//how to retrieve number from class in javascript
 
-/*
-var nineEl = $(".description"); //but that's still an element???
-var attribute = nineEl.attr("name")
-var integer = parseInt(attribute);
-//console.log(nineEl);
-
-if (currentHour > integer){
-//class takes on css attribute? 
-//nineEl.css("present");
-
-}*/
 
 $("input").each(function(index){
 var attribute = $(this).attr("name");
@@ -51,15 +38,13 @@ var integer = parseInt(attribute);
 if (currentHour > integer){
 $(this).addClass("past")
 }
-else if (currentHour === integer)//rounding??
+else if (currentHour == integer)//rounding??
 {
     $(this).addClass("present")
 }
 else{
     $(this).addClass("future")
-}
-
-})
+}})
 
 
 
