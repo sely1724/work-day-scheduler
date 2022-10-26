@@ -23,6 +23,33 @@ json connect
 */
 
 
-var today = moment().format("[Today is: ]MMM Do, YYYY, h:mma");
+var rightNow = moment();
+var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
 
+var currentHour = rightNow.format("H");
+
+//how to retrieve number from class in javascript
+
+var nineEl = $(".9");
+console.log(nineEl)
+
+
+
+
+//code in timeblock time. 
+
+/*
+
+How to Convert Time to number? Or number to time? 
+Looks like it's just a number already?
+
+
+var timeSlots = 
+
+if(today > "9am"){
+
+
+}
+
+*/
