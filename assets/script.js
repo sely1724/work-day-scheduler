@@ -31,8 +31,17 @@ var currentHour = rightNow.format("H");
 
 //how to retrieve number from class in javascript
 
-var nineEl = $(".9");
-console.log(nineEl)
+
+var nineEl = $(".description"); //but that's still an element???
+var attribute = nineEl.attr("name")
+var integer = parseInt(attribute);
+//console.log(nineEl);
+
+if (currentHour > integer){
+    console.log("check");
+}
+
+
 
 
 
