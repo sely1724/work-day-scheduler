@@ -2,13 +2,7 @@
 
 - We'll need:
 
-1) Display the current day is displayed at the top of the calendar
-    Connect Moment () to  <p id="currentDay" class="lead"></p>
-2) THEN I am presented with timeblocks for standard business hours 9am - 5pm
 
-timeblock container
-timeblock form??? input??? 
-save button to the right? class = ".saveBtn"
 
 3) Code Timeblocks so that they indicate whether it is in the past, present, or future
 
