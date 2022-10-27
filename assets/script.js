@@ -2,12 +2,6 @@
 
 - We'll need:
 
-
-
-3) Figure out Time Blocks.
-
-probably have to find current time and compare it to the time for each form.  
-
 4) WHEN I click into a timeblock, THEN I can enter an event
 
 form.
@@ -26,26 +20,38 @@ var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
 
 var currentHour = rightNow.format("H");
-console.log(currentHour)
-
 
 
 $("input").each(function(index){
 var attribute = $(this).attr("name");
 var integer = parseInt(attribute);
-
-
 if (currentHour > integer){
 $(this).addClass("past")
 }
 else if (currentHour == integer)//rounding??
 {
-    $(this).addClass("present")
+    $(this).addClass("present");
 }
 else{
-    $(this).addClass("future")
+    $(this).addClass("future");
 }})
 
+function eventAdd() {
+//when click happens take input in.  
+//with input, convert to string and store in string array locally.  
+
+
+
+
+}
+
+//ADDING EVENT
+
+//Forms - Soo we'll probably have to enter in information and when save is called, then it's parsed into a string and stored in local storage
+
+
+
+//listen to save button on TARGET.  click for container.  target for button exact???
 
 
 
