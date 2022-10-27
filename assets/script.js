@@ -36,14 +36,32 @@ else{
     $(this).addClass("future");
 }})
 
-function eventAdd() {
-//when click happens take input in.  
-//with input, convert to string and store in string array locally.  
+// function localStorage() {
+// //when click happens take input in.  
+// //with input, convert to string and store in string array locally.  
+
+// //json stringify.  
+
+
+// }
+
+
+// function formSubmit(event){
+// event.preventDefault();
 
 
 
+// }
 
-}
+$(".saveBtn").on("click", function(){
+
+var check = $(this).siblings().val();
+console.log(check);
+
+
+//call local storage function
+
+})
 
 //ADDING EVENT
 
