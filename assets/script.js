@@ -14,8 +14,8 @@ json connect
 6) WHEN I refresh the page THEN the saved events persist
 */
 
-
-var rightNow = moment();
+var jqueryArray = [];
+var rightNow = moment(); //does time update?
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
 
@@ -46,30 +46,35 @@ else{
 // }
 
 
-// function formSubmit(event){
-// event.preventDefault();
 
 
 
-// }
-
-$(".saveBtn").on("click", function(){
-
-var check = $(this).siblings().val();
-console.log(check);
 
 
-//call local storage function
 
+
+
+$(".saveBtn").on("click", function(event){
+    event.preventDefault();
+    var check = $(this).siblings().val();
+    console.log(check);
+    jqueryArray.push(check);
+    console.log(jqueryArray);
+    localStorage.setItem("work-planner",JSON.stringify(jqueryArray));     
 })
 
 //ADDING EVENT
 
-//Forms - Soo we'll probably have to enter in information and when save is called, then it's parsed into a string and stored in local storage
+
+function loadPage(){
+    var currentPage = JSON.parse(localStorage.getItem("work-planner"));
+    //curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
+    
+}
 
 
 
-//listen to save button on TARGET.  click for container.  target for button exact???
+
 
 
 
@@ -78,18 +83,3 @@ console.log(check);
 
 
 //code in timeblock time. 
-
-/*
-
-How to Convert Time to number? Or number to time? 
-Looks like it's just a number already?
-
-
-var timeSlots = 
-
-if(today > "9am"){
-
-
-}
-
-*/
