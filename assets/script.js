@@ -15,9 +15,8 @@ json connect
 */
 
 
-
-
-
+var jqueryArray = [];
+loadPage();
 var rightNow = moment(); //does time update?
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
@@ -39,45 +38,14 @@ else{
     $(this).addClass("future");
 }})
 
-// function localStorage() {
-// //when click happens take input in.  
-// //with input, convert to string and store in string array locally.  
-
-
-
-
-
-//FIGURE OUT HOW TO STORE IN JSON?
-
-
-
-//LOAD JSON STORED DATA ON PAGELOAD
-
-// function renderLastStored() {
-
-// //localStorage.getItem("arrayname");
-// //JSON.parse??? ^^^
-// //.textContent??? OR whatever equivalent is in jQuery.
-
-// }
-
-// renderLastStored();
-
-
-
 
 function storeInput(activity, activityTime){
-
     var storeTimeBlock= {
         eventTime: activityTime, 
         eventDesc: activity} 
     jqueryArray.push(storeTimeBlock)
-    console.log(jqueryArray);
     localStorage.setItem("work-planner",JSON.stringify(jqueryArray));  
 }
-
-
-var jqueryArray = [];
 
 
 $(".saveBtn").on("click", function(event){
@@ -89,7 +57,30 @@ $(".saveBtn").on("click", function(event){
 })
 
 
-// function reloadPage(){
-//     var currentPage = JSON.parse(localStorage.getItem("work-planner"));
-//     //curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
-// }
+function loadPage(){
+var currentPageInfo = JSON.parse(localStorage.getItem("work-planner"));
+console.log(currentPageInfo)
+$(".description").each(function(){
+    if (currentPageInfo !== null) {
+      
+            var nameHour = $(this).attr('name');
+                for (var i = 0; i < currentPageInfo.length; i++) {
+                    if (nameHour == currentPageInfo[i].eventTime){
+                        $(this).text(currentPageInfo[i].eventDesc)
+                        console.log(currentPageInfo[i].eventDesc + currentPageInfo[i].eventTime)
+                    }
+                    else if (currentPageInfo === null) {
+                        return;
+                    }
+                 
+    }}})}
+
+
+  
+
+
+
+//THEN!!! Figure out how to match them up to right time block if necessary
+
+//curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
+// 
