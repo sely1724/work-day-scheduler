@@ -15,7 +15,7 @@ json connect
 */
 
 
-var jqueryArray = [];
+var currentPageInfo = JSON.parse(localStorage.getItem("work-planner")) || [];
 renderSavedItems();
 var rightNow = moment(); //does time update?
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
@@ -42,9 +42,10 @@ else{
 function storeInput(activity, activityTime){
     var storeTimeBlock= {
         eventTime: activityTime, 
-        eventDesc: activity} 
-    jqueryArray.push(storeTimeBlock)
-    localStorage.setItem("work-planner",JSON.stringify(jqueryArray));  
+        eventDesc: activity}
+    
+    currentPageInfo.push(storeTimeBlock)
+    localStorage.setItem("work-planner",JSON.stringify(currentPageInfo));  
     renderSavedItems();
 }
 
@@ -59,19 +60,24 @@ $(".saveBtn").on("click", function(event){
 })
 
 
+
+
+
 function renderSavedItems(){
-var currentPageInfo = JSON.parse(localStorage.getItem("work-planner"));
-    if (currentPageInfo !== null) {
         $(".description").each(function(){
+            if (currentPageInfo !== null) {
             var nameHour = $(this).attr('name');
                 for (var i = 0; i < currentPageInfo.length; i++) {
                     if (nameHour == currentPageInfo[i].eventTime){
                         $(this).val(currentPageInfo[i].eventDesc)
+                        
                     }
                     else if (currentPageInfo === null) {
-                        return;
+                        return
                     }
-                 }})}
+
+            
+                 }}})
     }
 
 
