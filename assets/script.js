@@ -14,6 +14,9 @@ json connect
 6) WHEN I refresh the page THEN the saved events persist
 */
 
+
+
+
 var jqueryArray = [];
 var rightNow = moment(); //does time update?
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
@@ -50,36 +53,30 @@ else{
 
 
 
-
+jqueryArray = JSON.parse(localStorage.getItem("work-planner"))
 
 
 
 $(".saveBtn").on("click", function(event){
-    event.preventDefault();
-    var check = $(this).siblings().val();
-    console.log(check);
-    jqueryArray.push(check);
+    //event.preventDefault();
+    var input = $(this).siblings("input");
+    var activity = input.val();
+    var activityTime = $(input).attr("name");
+    console.log(activity, activityTime);
+    // jqueryArray.push(attribute, input);
+    //does this object (BELOW) need to be global in scope?? We'll use it when pulling json string.  But that may be a just json thing
+    var storeTimeBlock= {
+        input,
+        activityTime, 
+        input} 
+    jqueryArray.push(storeTimeBlock)
     console.log(jqueryArray);
     localStorage.setItem("work-planner",JSON.stringify(jqueryArray));     
 })
 
-//ADDING EVENT
 
-
-function loadPage(){
+function reloadPage(){
     var currentPage = JSON.parse(localStorage.getItem("work-planner"));
     //curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
     
 }
-
-
-
-
-
-
-
-
-
-
-
-//code in timeblock time. 
