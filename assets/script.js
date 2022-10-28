@@ -17,7 +17,7 @@ json connect
 
 
 
-var jqueryArray = [];
+
 var rightNow = moment(); //does time update?
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
@@ -31,7 +31,7 @@ var integer = parseInt(attribute);
 if (currentHour > integer){
 $(this).addClass("past")
 }
-else if (currentHour == integer)//rounding??
+else if (currentHour == integer)
 {
     $(this).addClass("present");
 }
@@ -43,40 +43,53 @@ else{
 // //when click happens take input in.  
 // //with input, convert to string and store in string array locally.  
 
-// //json stringify.  
 
+
+
+
+//FIGURE OUT HOW TO STORE IN JSON?
+
+
+
+//LOAD JSON STORED DATA ON PAGELOAD
+
+// function renderLastStored() {
+
+// //localStorage.getItem("arrayname");
+// //JSON.parse??? ^^^
+// //.textContent??? OR whatever equivalent is in jQuery.
 
 // }
 
+// renderLastStored();
 
 
 
 
+function storeInput(activity, activityTime){
 
-jqueryArray = JSON.parse(localStorage.getItem("work-planner"))
+    var storeTimeBlock= {
+        eventTime: activityTime, 
+        eventDesc: activity} 
+    jqueryArray.push(storeTimeBlock)
+    console.log(jqueryArray);
+    localStorage.setItem("work-planner",JSON.stringify(jqueryArray));  
+}
 
+
+var jqueryArray = [];
 
 
 $(".saveBtn").on("click", function(event){
-    //event.preventDefault();
+    event.preventDefault();
     var input = $(this).siblings("input");
     var activity = input.val();
     var activityTime = $(input).attr("name");
-    console.log(activity, activityTime);
-    // jqueryArray.push(attribute, input);
-    //does this object (BELOW) need to be global in scope?? We'll use it when pulling json string.  But that may be a just json thing
-    var storeTimeBlock= {
-        input,
-        activityTime, 
-        input} 
-    jqueryArray.push(storeTimeBlock)
-    console.log(jqueryArray);
-    localStorage.setItem("work-planner",JSON.stringify(jqueryArray));     
+    storeInput(activity, activityTime);   
 })
 
 
-function reloadPage(){
-    var currentPage = JSON.parse(localStorage.getItem("work-planner"));
-    //curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
-    
-}
+// function reloadPage(){
+//     var currentPage = JSON.parse(localStorage.getItem("work-planner"));
+//     //curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
+// }
