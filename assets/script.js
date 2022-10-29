@@ -1,42 +1,61 @@
-/*observations from CSS
-
-- We'll need:
-
-4) WHEN I click into a timeblock, THEN I can enter an event
-
-form.
-
-5) WHEN I click the save button for that timeblock THEN the text for that event is saved in local storage
-
-json connect
-
-
-6) WHEN I refresh the page THEN the saved events persist
-*/
-
 
 var currentPageInfo = JSON.parse(localStorage.getItem("work-planner")) || [];
+////realize that we don't need to pull all stored information.  If we enter new information on a certain time block, it should override information last saved there.
+
 renderSavedItems();
-var rightNow = moment(); //does time update?
+var rightNow = moment();
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 $("#currentDay").text(today);
+setTime();
 
 var currentHour = rightNow.format("H");
-
-
 $("input").each(function(index){
 var attribute = $(this).attr("name");
 var integer = parseInt(attribute);
-if (currentHour > integer){
-$(this).addClass("past")
-}
-else if (currentHour == integer)
-{
-    $(this).addClass("present");
-}
-else{
-    $(this).addClass("future");
-}})
+    if (currentHour > integer){
+        $(this).addClass("past")
+    }
+    else if (currentHour == integer){
+        $(this).addClass("present");
+    }
+    else{
+        $(this).addClass("future");
+    }
+})
+
+refreshColor();
+
+
+function setTime(){
+    setInterval(function() {
+    rightNow = moment();
+    today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
+    $("#currentDay").text(today);
+    }, 1000)    
+};
+
+// function refreshColor(){
+//     setInterval(function() {
+//     currentHour = rightNow.format("H");
+//     $("input").each(function(index){
+//         var attribute = $(this).attr("name");
+//         var integer = parseInt(attribute);
+//             if (currentHour > integer){
+//                 $(this).addClass("past")
+//                 console.log(currentHour) 
+//             }
+//             else if (currentHour == integer){
+//                  $(this).addClass("present");
+//                  console.log(currentHour) 
+//             }
+//             else{
+//                 $(this).addClass("future");
+//                 console.log(currentHour) 
+//             }
+//     })
+//    console.log(currentHour) 
+//     }, 3600000) //not sure if this refreshes every hour or not   
+// };
 
 
 function storeInput(activity, activityTime){
@@ -44,9 +63,9 @@ function storeInput(activity, activityTime){
         eventTime: activityTime, 
         eventDesc: activity}
     
-    currentPageInfo.push(storeTimeBlock)
-    localStorage.setItem("work-planner",JSON.stringify(currentPageInfo));  
-    renderSavedItems();
+        currentPageInfo.push(storeTimeBlock)
+        localStorage.setItem("work-planner",JSON.stringify(currentPageInfo));  
+        renderSavedItems();
 }
 
 
@@ -56,12 +75,7 @@ $(".saveBtn").on("click", function(event){
     var activity = input.val();
     var activityTime = $(input).attr("name");
     storeInput(activity, activityTime);   
-    
 })
-
-
-
-
 
 function renderSavedItems(){
         $(".description").each(function(){
@@ -75,17 +89,11 @@ function renderSavedItems(){
                     else if (currentPageInfo === null) {
                         return
                     }
-
-            
-                 }}})
+                }
+            }
+        }) 
     }
 
 
   
 
-
-
-//THEN!!! Figure out how to match them up to right time block if necessary
-
-//curent page.  Do we have to match again?? Do we need names in there? Does that mean we need an object instead of an array??
-// 
