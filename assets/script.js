@@ -1,5 +1,5 @@
 
-var currentPageInfo = JSON.parse(localStorage.getItem("work-planner")) || [];
+var currentPageInfo = JSON.parse(localStorage.getItem("work-planner"))||[];
 ////realize that we don't need to pull all stored information.  If we enter new information on a certain time block, it should override information last saved there.
 
 renderSavedItems();
@@ -65,15 +65,14 @@ function storeInput(activity, activityTime){
     
         currentPageInfo.push(storeTimeBlock)
         localStorage.setItem("work-planner",JSON.stringify(currentPageInfo));  
-        renderSavedItems();
-}
+    }
 
 
 $(".saveBtn").on("click", function(event){
     event.preventDefault();
     var input = $(this).siblings("input");
     var activity = input.val();
-    var activityTime = $(input).attr("name");
+    var activityTime = input.attr("name");
     storeInput(activity, activityTime);   
 })
 
