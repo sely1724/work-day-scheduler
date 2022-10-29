@@ -23,15 +23,19 @@
   <title>Work Day Scheduler</title> 
   </head>
 
+  <!-- Body Start -->
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
+      <!-- Display Current Time-->
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
-      <!-- Timeblocks go here -->
+      <!-- Start Timeblocks.  All built similarly-->
+      
         <div class = "time-block">
+          <!-- Div to hold time/input/button information.  One long row. Columns for eavh element vary in size -->
           <div class = "d-lex row">
             <div class = "d-flex hour col-1 pt-4">9:00am</div>
             <input type="text" class = "d-flex description col-10" name = "9"></input> 
@@ -39,7 +43,6 @@
             </div>
         </div>
   
-
         <div class = "time-block">
           <div class = "row">
             <div class = "hour col-1 pt-4">10:00am</div>
@@ -48,15 +51,13 @@
             </div>
         </div>
         
-
         <div class = "time-block">
           <div class = "row">
             <div class = "hour col-1 pt-4">11:00am</div>
             <input type="text" class = "description col-10" name = "11"></input> 
             <button class = "saveBtn col-1">🔒</button>
             </div>
-        </div>
-        
+          </div>
 
         <div class = "time-block">
           <div class = "row">
@@ -108,18 +109,8 @@
             <button class = "saveBtn col-1">🔒</button>
             </div>
         </div>
-       
-        
-        
-
-
-
-
-
-
-
-
     </div>
+    <!-- Add Scripts - jQuery/Moment/JS local file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
