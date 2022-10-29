@@ -23,7 +23,7 @@ var integer = parseInt(attribute);
     }
 })
 
-refreshColor();
+//refreshColor();
 
 
 function setTime(){
