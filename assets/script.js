@@ -1,15 +1,27 @@
 
+//pull items saved in local storage into array
 var currentPageInfo = JSON.parse(localStorage.getItem("work-planner"))||[];
-////realize that we don't need to pull all stored information.  If we enter new information on a certain time block, it should override information last saved there.
 
+//root into DOM 
+var inputEl = $("input");
+var timeEl = $("#currentDay");
+
+//call funtion to load array inputs into their respective input elements
 renderSavedItems();
+
+//display time first thing on page
 var rightNow = moment();
+var currentHour = rightNow.format("H");
 var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
-$("#currentDay").text(today);
+
+//call function to update time every second while the page is loaded
 setTime();
 
-var currentHour = rightNow.format("H");
-$("input").each(function(){
+//call function to update color/class representing past/present/future every minute while the page is loaded
+setColor();
+
+//displays color representing past/present/future first thing when page is loaded
+inputEl.each(function(){
 var attribute = $(this).attr("name");
 var index = parseInt(attribute)
     if (currentHour > index){
@@ -23,41 +35,36 @@ var index = parseInt(attribute)
     }
 })
 
-//refreshColor();
+//function that will change the color of timeblocks when hour changes.  runs every minute.
+function setColor(){
+    setInterval(function() {
+    inputEl.each(function(){
+        var attribute = $(this).attr("name");
+        var index = parseInt(attribute)
+            if (currentHour > index){
+                $(this).addClass("past")
+            }
+            else if (currentHour == index){
+                $(this).addClass("present");
+            }
+            else{
+                $(this).addClass("future");
+            }
+        })
+    }, 60000)
+};
 
-
+//function that updates time displayed on page
 function setTime(){
     setInterval(function() {
     rightNow = moment();
     today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
-    $("#currentDay").text(today);
+    timeEl.text(today);
     }, 1000)    
 };
 
-// function refreshColor(){
-//     setInterval(function() {
-//     currentHour = rightNow.format("H");
-//     $("").each(function(index){
-//         var attribute = $(this).attr("name");
-//         var integer = parseInt(attribute);
-//             if (currentHour > integer){
-//                 $(this).addClass("past")
-//                 console.log(currentHour) 
-//             }
-//             else if (currentHour == integer){
-//                  $(this).addClass("present");
-//                  console.log(currentHour) 
-//             }
-//             else{
-//                 $(this).addClass("future");
-//                 console.log(currentHour) 
-//             }
-//     })
-//    console.log(currentHour) 
-//     }, 3600000) //not sure if this refreshes every hour or not   
-// };
 
-
+//function takes the input user entered, stores it as an object, pushes into an array, and stores in local storage
 function storeInput(activity, activityTime){
     var storeTimeBlock= {
         eventTime: activityTime, 
@@ -67,7 +74,7 @@ function storeInput(activity, activityTime){
         localStorage.setItem("work-planner",JSON.stringify(currentPageInfo));  
     }
 
-
+//event listener.  whenever the save button is clicked, information is saved, and the store input function is called
 $(".saveBtn").on("click", function(event){
     event.preventDefault();
     var input = $(this).siblings("input");
@@ -76,8 +83,9 @@ $(".saveBtn").on("click", function(event){
     storeInput(activity, activityTime);   
 })
 
+//this function is called first thing when page is loaded.  Takes all saved information and loads it into correct input element.
 function renderSavedItems(){
-        $(".description").each(function(){
+     inputEl.each(function(){
             if (currentPageInfo !== null) {
             var nameHour = $(this).attr('name');
                 for (var i = 0; i < currentPageInfo.length; i++) {
