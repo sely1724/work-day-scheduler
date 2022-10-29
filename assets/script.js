@@ -9,13 +9,13 @@ $("#currentDay").text(today);
 setTime();
 
 var currentHour = rightNow.format("H");
-$("input").each(function(index){
+$("input").each(function(){
 var attribute = $(this).attr("name");
-var integer = parseInt(attribute);
-    if (currentHour > integer){
+var index = parseInt(attribute)
+    if (currentHour > index){
         $(this).addClass("past")
     }
-    else if (currentHour == integer){
+    else if (currentHour == index){
         $(this).addClass("present");
     }
     else{
@@ -37,7 +37,7 @@ function setTime(){
 // function refreshColor(){
 //     setInterval(function() {
 //     currentHour = rightNow.format("H");
-//     $("input").each(function(index){
+//     $("").each(function(index){
 //         var attribute = $(this).attr("name");
 //         var integer = parseInt(attribute);
 //             if (currentHour > integer){
