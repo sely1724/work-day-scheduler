@@ -57,8 +57,6 @@ function setColor(){
 //function that updates time displayed on page
 function setTime(){
     setInterval(function() {
-    rightNow = moment();
-    today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
     timeEl.text(today);
     }, 1000)    
 };
