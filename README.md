@@ -25,4 +25,4 @@ Please refer to the LICENSE in the repo.
 <img src= "./assets/screenshot2.png"/>
 
 ## Link to Deployed Website
-[Link]()
+[Link](https://sely1724.github.io/work-day-scheduler/)

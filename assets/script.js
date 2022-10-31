@@ -13,13 +13,13 @@ renderSavedItems();
 //display time first thing on page
 var rightNow = moment();
 var currentHour = rightNow.format("H");
-var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mmas");
+var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
 timeEl.text(today);
 
 //update time every second while the page is loaded
 setInterval(function() {
     rightNow = moment();
-    today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mmas");
+    today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
     timeEl.text(today);
     }, 1000);   
 //call function to update color/class representing past/present/future every minute while the page is loaded
