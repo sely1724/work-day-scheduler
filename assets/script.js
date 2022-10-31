@@ -6,6 +6,7 @@ var currentPageInfo = JSON.parse(localStorage.getItem("work-planner"))||[];
 var inputEl = $("input");
 var timeEl = $("#currentDay");
 
+
 //call funtion to load array inputs into their respective input elements
 renderSavedItems();
 
