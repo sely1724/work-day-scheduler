@@ -13,11 +13,15 @@ renderSavedItems();
 //display time first thing on page
 var rightNow = moment();
 var currentHour = rightNow.format("H");
-var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mma");
+var today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mmas");
+timeEl.text(today);
 
-//call function to update time every second while the page is loaded
-setTime();
-
+//update time every second while the page is loaded
+setInterval(function() {
+    rightNow = moment();
+    today = rightNow.format("[Today is: ]MMM Do, YYYY, H:mmas");
+    timeEl.text(today);
+    }, 1000);   
 //call function to update color/class representing past/present/future every minute while the page is loaded
 setColor();
 
@@ -39,6 +43,8 @@ var index = parseInt(attribute)
 //function that will change the color of timeblocks when hour changes.  runs every minute.
 function setColor(){
     setInterval(function() {
+    rightNow = moment();
+    currentHour = rightNow.format("H");
     inputEl.each(function(){
         var attribute = $(this).attr("name");
         var index = parseInt(attribute)
@@ -56,11 +62,8 @@ function setColor(){
 };
 
 //function that updates time displayed on page
-function setTime(){
-    setInterval(function() {
-    timeEl.text(today);
-    }, 1000)    
-};
+
+    
 
 
 //function takes the input user entered, stores it as an object, pushes into an array, and stores in local storage
